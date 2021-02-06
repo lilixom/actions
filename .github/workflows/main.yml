@@ -1,5 +1,5 @@
 # File .githubworkflowsrepo-sync.yml
-name ??自动同步??
+name 自动同步
 on
   schedule
     - cron '0 0-231   '
@@ -19,7 +19,7 @@ jobs
       - uses actionscheckout@v2
         with
           persist-credentials false
-      - name 开始??自动同步??
+      - name 开始自动同步
         uses repo-syncgithub-sync@v2
         if env.PAT
         with
