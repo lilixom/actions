@@ -1,0 +1,40 @@
+# File .githubworkflowsrepo-sync.yml
+name ??自动同步??
+on
+  schedule
+    - cron '0 0-231   '
+  workflow_dispatch
+  watch
+    types started
+  repository_dispatch
+    types repo-sync
+jobs
+  repo-sync
+    env
+      PAT ${{ github.event.client_payload.PAT  secrets.PAT }} #此处PAT需要申请，教程详见：httpswww.jianshu.compbb82b3ad1d11
+      dst_key ${{ secrets.GITEE_PRIVATE_KEY }} # 我自己同步到gitee使用，其他人可忽略
+    runs-on ubuntu-latest
+    if github.event.repository.owner.id == github.event.sender.id
+    steps
+      - uses actionscheckout@v2
+        with
+          persist-credentials false
+
+      - name 开始??自动同步??
+        uses repo-syncgithub-sync@v2
+        if env.PAT
+        with
+          source_repo httpsgithub.comshuye73MyActions.git
+          source_branch main
+          destination_branch main
+          github_token ${{ github.event.client_payload.PAT  secrets.PAT }}
+      # 我自己同步到gitee使用，其他人可忽略
+      - name sync github - gitee
+        uses Yikunhub-mirror-action@master
+        if env.dst_key
+        with
+          src githubshuye73
+          dst giteeshuye72
+          static_list MyActions
+          dst_key ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token ${{ secrets.GITEE_TOKEN }}
