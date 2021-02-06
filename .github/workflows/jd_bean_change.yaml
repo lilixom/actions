@@ -1,5 +1,3 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 name: 京豆昨日收益
 on:
     workflow_dispatch:
@@ -14,7 +12,8 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event.repository.owner.id == github.event.sender.id
         steps:
-            - uses: actions/checkout@v1
+            - name: 拉取代码
+              uses: actions/checkout@v1
             - name: Use Node.js 10.x
               uses: actions/setup-node@v1
               with:
