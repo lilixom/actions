@@ -28,7 +28,7 @@ jobs:
                   npm install
             - name: "运行【海产新年抽奖】"
               run: |
-                  node onlyOneExecute.js
+                  node ./main/scripts/jd_sx.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}

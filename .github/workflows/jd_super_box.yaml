@@ -28,7 +28,7 @@ jobs:
                   npm install
             - name: "运行【京东超级盒子📦】"
               run: |
-                  node onlyOneExecute.js
+                  node ./scripts/jd_super_box.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}

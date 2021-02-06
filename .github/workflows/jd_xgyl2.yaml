@@ -28,7 +28,7 @@ jobs:
                   npm install
             - name: "运行【小鸽有礼🕊2】"
               run: |
-                  node onlyOneExecute.js
+                  node ./scripts/jd_xgyl2.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}

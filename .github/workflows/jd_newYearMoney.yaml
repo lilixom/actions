@@ -28,7 +28,7 @@ jobs:
                   npm install
             - name: "运行【京东压岁钱💰】"
               run: |
-                  node onlyOneExecute.js
+                  node ./scripts/jd_newYearMoney.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}
