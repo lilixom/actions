@@ -27,7 +27,7 @@ jobs:
                   npm install
             - name: "运行 【东东抽奖机】【新店福利】【东东福利屋】【东东生活】【闪购盲盒】【疯狂砸金蛋】"
               run: |
-                  node onlyOneExecute.js
+                  node ./scripts/jd_lotteryMachine.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}
