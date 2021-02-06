@@ -1,36 +1,40 @@
-# This is a basic workflow to help you get started with Actions
+# File .githubworkflowsrepo-sync.yml
+name ??自动同步??
+on
+  schedule
+    - cron '0 0-231   '
+  workflow_dispatch
+  watch
+    types started
+  repository_dispatch
+    types repo-sync
+jobs
+  repo-sync
+    env
+      PAT ${{ github.event.client_payload.PAT  secrets.PAT }} #此处PAT需要申请，教程详见：httpswww.jianshu.compbb82b3ad1d11
+      dst_key ${{ secrets.GITEE_PRIVATE_KEY }} # 我自己同步到gitee使用，其他人可忽略
+    runs-on ubuntu-latest
+    if github.event.repository.owner.id == github.event.sender.id
+    steps
+      - uses actionscheckout@v2
+        with
+          persist-credentials false
 
-name: CI
-
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name 开始??自动同步??
+        uses repo-syncgithub-sync@v2
+        if env.PAT
+        with
+          source_repo httpsgithub.comshuye73MyActions.git
+          source_branch main
+          destination_branch main
+          github_token ${{ github.event.client_payload.PAT  secrets.PAT }}
+      # 我自己同步到gitee使用，其他人可忽略
+      - name sync github - gitee
+        uses Yikunhub-mirror-action@master
+        if env.dst_key
+        with
+          src githubshuye73
+          dst giteeshuye72
+          static_list MyActions
+          dst_key ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token ${{ secrets.GITEE_TOKEN }}
