@@ -1,5 +1,4 @@
 name: 京东汽车
-
 on:
     workflow_dispatch:
     schedule:
@@ -8,11 +7,10 @@ on:
         types: [started]
     repository_dispatch:
         types: jd_car
-
 jobs:
     build:
         runs-on: ubuntu-latest
-        steps:
+        steps: 
             - name: 拉取代码
               uses: actions/checkout@v2
             - name: Use Node.js
