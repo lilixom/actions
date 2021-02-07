@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event.repository.owner.id == github.event.sender.id
         steps:
-		    - name: 拉取代码
+	    - name: 拉取代码
               uses: actions/checkout@v1
             - name: Use Node.js 10.x
               uses: actions/setup-node@v1
