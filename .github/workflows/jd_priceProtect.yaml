@@ -28,7 +28,7 @@ jobs:
                   npm install
             - name: "运行【京东价格保护】"
               run: |
-                  node ./Scripts/jd_priceProtect.js
+                  node ./scripts/jd_priceProtect.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}
