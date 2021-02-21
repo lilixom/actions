@@ -28,7 +28,7 @@ jobs:
                   npm install
             - name: "运行【京东女装盲盒📦】"
               run: |
-                  node ./Scripts/jd_nzmh.js
+                  node ./scripts/jd_nzmh.js
               env:
                   JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
                   JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}
